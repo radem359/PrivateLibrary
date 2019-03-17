@@ -1,0 +1,56 @@
+﻿@model PrivateLibrary.Models.BookCorrect
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BookCorrect</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Desription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_Desription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LibraryUser.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LibraryUser.Username)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

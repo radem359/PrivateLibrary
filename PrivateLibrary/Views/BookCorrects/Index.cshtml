@@ -1,0 +1,87 @@
+﻿@model IEnumerable<PrivateLibrary.Models.BookCorrect>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (Session["Admin"] != null)
+{
+    if (Session["Admin"].ToString().Equals("1"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Book_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Book_Desription)
+        </th>
+        <th>
+            The book is read by
+        </th>
+        @if (Session["Admin"] != null)
+        {
+            if (!Session["Admin"].ToString().Equals("0"))
+            {
+                <th></th>
+            }
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book_Desription)
+            </td>
+            @if (item.LibraryUser != null)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.LibraryUser.Username)
+                </td>
+            }
+            else
+            {
+                <td>
+                    Available
+                </td>
+            }
+
+
+            @if (Session["Admin"] != null)
+            {
+                if (Session["Admin"].ToString().Equals("1"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Book_Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Book_Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Book_Id })
+                    </td>
+                }
+                else if (Session["Admin"].ToString().Equals("2"))
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Book_Id })
+                    </td>
+                }
+            }
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dedb53ae194a46c28c792ec8a41889ff" Name="Diagram1">
+        <EntityTypeShape EntityType="PrivateLibraryModel.Author" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.BookAuthor" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.BookCorrect" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.BookGenre" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.BookLanguage" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.Genre" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.Language" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.LibraryUser" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.Nationality" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrivateLibraryModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="PrivateLibraryModel.FK_Author_Nationality" ManuallyRouted="false" />
+        <AssociationConnector Association="PrivateLibraryModel.FK_BookAuthor_Author" ManuallyRouted="false" />
+        <AssociationConnector Association="PrivateLibraryModel.FK_BookAuthor_BookCorrect" ManuallyRouted="false" />
+        <AssociationConnector Association="PrivateLibraryModel.FK_BookCorrect_LibraryUser" ManuallyRouted="false" />
+        <AssociationConnector Association="PrivateLibraryModel.FK_BookGenre_BookCorrect" ManuallyRouted="false" />
+        <AssociationConnector Association="PrivateLibraryModel.FK_BookLanguage_BookCorrect" ManuallyRouted="false" />
+        <AssociationConnector Association="PrivateLibraryModel.FK_BookGenre_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="PrivateLibraryModel.FK_BookLanguage_Language" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,29 @@
+﻿@model PrivateLibrary.Models.Language
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Language</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Language_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Session["Admin"].ToString().Equals("1"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Language_Id }) <br>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

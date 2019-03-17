@@ -1,0 +1,29 @@
+﻿@model PrivateLibrary.Models.Genre
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Genre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (Session["Admin"].ToString().Equals("1"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Genre_Id }) <br>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,113 @@
+﻿@model PrivateLibrary.Models.BookCorrect
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<script type="text/javascript" src="~/Scripts/CreateBook.js"></script>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>New book</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Book_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Book_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Book_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ISBN_Number, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ISBN_Number, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ISBN_Number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Book_Desription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Book_Desription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Book_Desription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.User_Id, "User_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("User_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.User_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <b>Authors: </b>
+                        @Html.DropDownList("Authors", null, htmlAttributes: new { size = "10", @class = "form-control", Multiple = "multiple", style = "width:150px;height : 200px" })
+                    </div>
+                    <div class="col-sm-2 btn-group-vertical">
+                        <br><br><br>
+                        <button type="button" class="btn btn-primary btn-md" id="choose">Choose</button>
+                        <button type="button" class="btn btn-primary btn-md" id="remove">Remove</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <b>Choosen Authors:</b><br>
+                        <select id="ChoosenAuthors" class="form-control" name="ChoosenAuthors" size="10" Multiple="multiple" style="width:150px;height : 200px"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <b>Genres: </b>
+                        @Html.DropDownList("Genres", null, htmlAttributes: new { size = "10", @class = "form-control", Multiple = "multiple", style = "width:150px;height : 200px" })
+                    </div>
+                    <div class="col-sm-2 btn-group-vertical">
+                        <br><br><br>
+                        <button type="button" class="btn btn-primary btn-md" id="choose1">Choose</button>
+                        <button type="button" class="btn btn-primary btn-md" id="remove1">Remove</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <b>Choosen Genres:</b><br>
+                        <select id="ChoosenGenres" class="form-control" name="ChoosenGenres" size="10" Multiple="multiple" style="width:150px;height : 200px"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookLanguage, "Language: ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Language", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

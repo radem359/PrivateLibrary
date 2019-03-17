@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PrivateLibrary.Models.Language>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (Session["Admin"] != null)
+{
+    if (Session["Admin"].ToString().Equals("1"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Language_Name)
+        </th>
+        @if (Session["Admin"] != null)
+        {
+            if (!Session["Admin"].ToString().Equals("0"))
+            {
+                <th></th>
+            }
+        }
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Language_Name)
+        </td>
+        @if (Session["Admin"] != null)
+        {
+            if (Session["Admin"].ToString().Equals("1"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Language_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Language_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Language_Id })
+                </td>
+            }
+            else if (Session["Admin"].ToString().Equals("2"))
+            {
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Language_Id })
+                </td>
+            }
+        }
+    </tr>
+}
+
+</table>

@@ -1,0 +1,82 @@
+﻿@model PrivateLibrary.Models.LibraryUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (Session["Username"].ToString().Equals(Model.Username))
+{
+    <h2>Details about you</h2>
+}
+else
+{
+    <h2>Details about user @Html.DisplayFor(model => model.Username)</h2>
+}
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin)
+        </dt>
+
+        @if (Session["Admin"].ToString().Equals("1"))
+        {
+            <dd>
+                Yes you are! :)
+            </dd>
+        }
+        else
+        {
+            <dd>
+                Sorry but you are not admin :(
+            </dd>
+        }
+        @if (!Session["Admin"].ToString().Equals("1"))
+        {
+            if (Model.BookCorrect.Any())
+            {
+                <dt>
+                    Rented Books:
+                </dt>
+                foreach (var item in Model.BookCorrect)
+                {
+                    <dd>
+                        @Html.DisplayFor(model => item.Book_Name)
+                    </dd>
+                }
+            }
+
+        }
+
+
+    </dl>
+</div>
+@if (Session["Admin"].ToString().Equals("1"))
+{
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+}
+else
+{
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User_Id })
+}

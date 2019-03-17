@@ -1,0 +1,37 @@
+﻿@model PrivateLibrary.Models.Author
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Author</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Author_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationality.Nationality_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nationality.Nationality_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+       @if (Session["Admin"].ToString().Equals("1"))
+       {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Author_Id }) <br>
+       }
+    @Html.ActionLink("Back to List", "Index")
+</p>

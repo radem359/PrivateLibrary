@@ -1,0 +1,121 @@
+﻿@model PrivateLibrary.Models.BookCorrect
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+    <div>
+        <h4>@Html.DisplayFor(model => model.Book_Name)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Book_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Book_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ISBN_Number)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ISBN_Number)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Book_Desription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Book_Desription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LibraryUser.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LibraryUser.Username)
+            </dd>
+
+            @if (Model.BookAuthor.Count != 0)
+            {
+                <dt>
+                    Authors:
+                </dt>
+                
+                foreach (var item in Model.BookAuthor.ToList())
+                {
+                <dd>
+                    @Html.DisplayFor(model => item.Author.Author_Name)
+                </dd>
+                }
+            }
+
+            @if (Model.BookGenre.Count != 0)
+            {
+                <dt>
+                    Genres:
+                </dt>
+
+                foreach (var item in Model.BookGenre)
+                {
+                    <dd>
+                        @Html.DisplayFor(model => item.Genre.Genre_Name)
+                    </dd>
+                }
+            }
+
+            @if (Model.BookLanguage.Count != 0)
+            {
+                <dt>
+                    Language:
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BookLanguage.First().Language.Language_Name)
+                </dd>
+            }
+
+        </dl>
+    </div>
+    @if (Session["Admin"].ToString().Equals("1"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Book_Id }) <br>
+    }
+    else
+    {
+        if (Model.User_Id == (int)Session["UserId"])
+        {
+            using (Html.BeginForm("Return", "BookCorrects"))
+            { 
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-default" value="@Model.Book_Id" name="Book_Id">Return</button>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            if(!Model.User_Id.HasValue)
+            {
+                using (Html.BeginForm("Rent", "BookCorrects"))
+                {
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-default" value="@Model.Book_Id" name="Book_Id">Rent</button>
+                    </div>
+                </div>
+                }
+            }
+        }
+
+    }
+<br>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
